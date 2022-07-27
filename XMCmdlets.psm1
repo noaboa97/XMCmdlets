@@ -1,6 +1,9 @@
 <#
 .SYNOPSIS
-    This PowerShell module contains functions that handle authentication, add and remove for currently only accesscontrol groups in XMC.
+    XMCmdlets a PowerShell wrapper for ExtremeCloud IQ Site Engine GraphQL API
+    
+.DESCRIPTION
+    This PowerShell module contains functions that handle authentication, add and remove of Mac addresses currently only for accesscontrol groups in XMC.
     It's a wrapper for the graphql API of the ExtremeCloud IQ Site Engine former XMC.
 #>
 

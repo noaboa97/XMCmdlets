@@ -31,7 +31,7 @@ function Update-XMCAccessControlGroups {
     Purpose/Change: Initial function development
   
     .EXAMPLE
-     $server = "Hostname:Port"
+    $server = "Hostname:Port"
     $mac = "00:00:00:00:00:00"
     $targgroup = "YourAccessControlGroup" #e.g. SwissTPH-StagingDevices
 
