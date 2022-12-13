@@ -24,7 +24,7 @@ function Remove-XMCSession {
     Remove-XMCSession -Variable "Token"
     #>
     param (
-        [Parameter(valuefrompipeline = $true, mandatory = $true, HelpMessage = "Enter variable name", Position = 0)]
+        [Parameter(valuefrompipeline = $true, HelpMessage = "Enter variable name", Position = 0)]
         [String]
         $Variable
     )
