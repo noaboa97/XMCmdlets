@@ -26,14 +26,12 @@ function Get-XMCEndSystemsOfGroup {
   
     .EXAMPLE
     $server = "Hostname:Port"
-    $mac = "00:00:00:00:00:00"
-    $targgroup = "YourAccessControlGroup" #e.g. SwissTPH-StagingDevices
+    $group = "YourAccessControlGroup" #e.g. SwissTPH-StagingDevices
 
-    $resp = Update-XMCAccessControlGroups -MacAddress $mac -Operation Add -XMCFQDN $server -TargetGroup $targgroup
-
+    $resp = Get-XMCEndSystemsOfGroup -Group $group -XMCFQDN $server -token $xmcsession
 
     .EXAMPLE
-    $resp = Update-XMCAccessControlGroups -MacAddress $mac -Operation Add -XMCFQDN $server -TargetGroup $targgroup -Token $token
+    $resp = Get-XMCEndSystemsOfGroup -Group "YourAccessControlGroup" -XMCFQDN $server -token $xmcsession
     #>
 
     [CmdletBinding()]
