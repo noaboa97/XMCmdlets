@@ -1,74 +1,90 @@
 # XMCmdlets a PowerShell wrapper for ExtremeCloud IQ Site Engine GraphQL API
-
-This PowerShell module contains functions that handle authentication, add and remove of Mac addresses  currently only for accesscontrol groups in XMC.
-It's a wrapper for the graphql API of the ExtremeCloud IQ Site Engine former XMC.
-
-## Functions 
-Currently it only provides three functions:
+ 
+ This PowerShell module contains functions that handle authentication, add and remove for currently only accesscontrol groups in XMC.
+It is a wrapper for the graphql API of the ExtremeCloud IQ Site Engine former XMC.
+ 
+ ## Functions
+Currently it provides the following functions
 | Function  | Description   | Type   |
 | ------------- | ------------- |:------:|
-| Get-XMCToken | Retrieves the XMC API token and creates a session to use | PowerShell function |
-| Update-XMCAccessControlGroups | Add or remove mac addresse from an access control group | PowerShell function |
-| Remove-XMCSession | Removes the global XMC session from the current PS session | PowerShell function | 
+| Get-XMCEndSystemsOfGroup | Retrieves all end systems of a group | PowerShell Function |
+| Get-XMCToken | Retrieves the XMC API token | PowerShell Function |
+| Remove-XMCSession | Remove / clear the XMC session variable | PowerShell Function |
+| Update-XMCAccessControlGroups | Add or remove mac addresse from an access control group | PowerShell Function | 
+ 
+### Get-XMCEndSystemsOfGroup
+#### SYNTAX
+``` powershell
+Get-XMCEndSystemsOfGroup
+   [-Group] <String>
+   [[-Token] <XMCSession>]
+   [-XMCFQDN] <String>
+```
 
-### Get-XMCToken 
-Retrieves the XMC API token and creates a session to use. Session is saved in a global variable $XMCSession.
-also returns the session and could be passed as parameter to the Update-XMCAccessControlGroups.
+#### Examples
 
-#### Syntax
-```powershell
+``` powershell
+$server = "Hostname:Port"
+$group = "YourAccessControlGroup" #e.g. SwissTPH-StagingDevices
+
+$resp = Get-XMCEndSystemsOfGroup -Group $group -XMCFQDN $server -token $xmcsession    
+$resp = Get-XMCEndSystemsOfGroup -Group "YourAccessControlGroup" -XMCFQDN $server -token $xmcsession
+```
+
+### Get-XMCToken
+#### SYNTAX
+``` powershell
 Get-XMCToken
-   [[-ClientID] <string[]>]
-   [[-ClientSecret]<string[]>]
-   [[-XMCFQDN]<string[]>]
-   [<CommonParameters>]
-```
-#### Example
-```powershell
-    $clientid = "YourClientID"
-    $clientsecret = "YourClientSecret"
-    $server = "Hostname:Port"
-
-    Get-XMCToken -ClientID $clientid -ClientSecret $clientsecret -XMCFQDN $server
-
-    $token = Get-XMCToken -ClientID $clientid -ClientSecret $clientsecret -XMCFQDN $server
+   [-ClientID] <String>
+   [-ClientSecret] <String>
+   [-XMCFQDN] <String>
 ```
 
-### Update-XMCAccessControlGroups 
-Add or remove mac addresse from an access control group
-#### Syntax
-```powershell
-Update-XMCAccessControlGroups 
-   [[-TargetGroup] <string[]>]
-   [[-MacAddress]<string[]>]
-   [[-OperationType]<string[]>]
-   [[-Token]<XMCSession[]>
-   [[-XMCFQDN]<string[]>]
-   [<CommonParameters>]
+#### Examples
+
+``` powershell
+$clientid = "YourClientID"
+$clientsecret = "YourClientSecret"
+$server = "Hostname:Port"
+
+Get-XMCToken -ClientID $clientid -ClientSecret $clientsecret -XMCFQDN $server    
+$token = Get-XMCToken -ClientID $clientid -ClientSecret $clientsecret -XMCFQDN $server
 ```
-#### Example
-```powershell
-    $server = "Hostname:Port"
-    $mac = "00:00:00:00:00:00"
-    $targgroup = "YourAccessControlGroup" #e.g. SwissTPH-StagingDevices
-
-    $resp = Update-XMCAccessControlGroups -MacAddress $mac -Operation Add -XMCFQDN $server -TargetGroup $targgroup
-
-    $resp = Update-XMCAccessControlGroups -MacAddress $mac -Operation Add -XMCFQDN $server -TargetGroup $targgroup -Token $token
-```
-
 
 ### Remove-XMCSession
-Remove / clear the XMC session variable
-#### Syntax
-```powershell
+#### SYNTAX
+``` powershell
 Remove-XMCSession
-   [[-Variable] <string[]>]
+   [[-Variable] <String>]
 ```
-#### Example
-```powershell
-    Remove-XMCSession
 
-    Remove-XMCSession -Variable "Token"
+#### Examples
+
+``` powershell
+Remove-XMCSession
+    
+Remove-XMCSession -Variable "Token"
+```
+
+### Update-XMCAccessControlGroups
+#### SYNTAX
+``` powershell
+Update-XMCAccessControlGroups
+   [-TargetGroup] <String>
+   [-MacAddress] <String>
+   [-OperationType] <Object>
+   [[-Token] <XMCSession>]
+   [-XMCFQDN] <String>
+```
+
+#### Examples
+
+``` powershell
+$server = "Hostname:Port"
+$mac = "00:00:00:00:00:00"
+$targgroup = "YourAccessControlGroup" #e.g. SwissTPH-StagingDevices
+
+$resp = Update-XMCAccessControlGroups -MacAddress $mac -Operation Add -XMCFQDN $server -TargetGroup $targgroup    
+$resp = Update-XMCAccessControlGroups -MacAddress $mac -Operation Add -XMCFQDN $server -TargetGroup $targgroup -Token $token
 ```
 

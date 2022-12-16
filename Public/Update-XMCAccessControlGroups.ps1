@@ -124,7 +124,7 @@ function Update-XMCAccessControlGroups {
 
         if ($response.data.accessControl.$Operation.status -eq "SUCCESS") {
 
-            $message = "[$OperationType]" + ": Mac $mac $prepo $targgroup"
+            $message = "[$OperationType]" + ": Mac $macAddress $prepo $targgroup"
 
             Write-host $message -ForegroundColor Green
         
