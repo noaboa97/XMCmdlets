@@ -62,7 +62,11 @@ function Update-XMCAccessControlGroups {
 
         [Parameter(valuefrompipeline = $true, mandatory = $true, HelpMessage = "Enter XMC Server address:", Position = 4)]
         [String]
-        $XMCFQDN
+        $XMCFQDN,
+
+        [Parameter(valuefrompipeline = $true, HelpMessage = "Enter description", Position = 5)]
+        [String]
+        $Description = "Added with PowerShell at $(get-date -Format "dd.MM.yy HH:mm:ss")"
 
     )
 
@@ -80,8 +84,6 @@ function Update-XMCAccessControlGroups {
         }
 
         $uri = "https://$XMCFQDN/nbi/graphql"
-
-        $description = "Added with PowerShell at $(get-date -Format "dd.MM.yy HH:mm:ss")"
 
     }
     Process {
